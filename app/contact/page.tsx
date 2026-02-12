@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -28,6 +28,47 @@ if (typeof window !== "undefined") {
 
 export default function Contact() {
     const containerRef = useRef<HTMLDivElement>(null);
+    const [status, setStatus] = useState<"IDLE" | "TRANSMITTING" | "SUCCESS" | "ERROR">("IDLE");
+    const [result, setResult] = useState("");
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setStatus("TRANSMITTING");
+
+        const formData = new FormData(e.currentTarget);
+        formData.append("access_key", "YOUR_ACCESS_KEY_HERE");
+
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json"
+                },
+                body: json
+            });
+            const res = await response.json();
+
+            if (res.success) {
+                setStatus("SUCCESS");
+                setResult(res.message);
+                (e.target as HTMLFormElement).reset();
+            } else {
+                setStatus("ERROR");
+                setResult(res.message);
+            }
+        } catch (error) {
+            setStatus("ERROR");
+            setResult("CONNECTION_FAILURE");
+        }
+
+        // Reset status after 5 seconds
+        setTimeout(() => setStatus("IDLE"), 5000);
+    };
+
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end end"]
@@ -132,7 +173,7 @@ export default function Contact() {
 
                                     <div className="space-y-8">
                                         <motion.a
-                                            href="mailto:contact@amir.dev"
+                                            href="mailto:muhammedamirt@gmail.com"
                                             whileHover={{ x: 10 }}
                                             className="group block relative"
                                         >
@@ -143,7 +184,7 @@ export default function Contact() {
                                                     </div>
                                                     <div>
                                                         <span className="block text-[8px] font-orbitron text-gray-600 uppercase tracking-[0.2em] mb-1">Direct Terminal</span>
-                                                        <span className="text-white font-rajdhani text-xl tracking-wider group-hover:text-red-500 transition-colors">AAMIRR.DEV@CORE.SYS</span>
+                                                        <span className="text-white font-rajdhani text-xl tracking-wider group-hover:text-red-500 transition-colors">muhammedamirt@gmail.com</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -204,15 +245,15 @@ export default function Contact() {
                     <div className="lg:col-span-7">
                         <section className="reveal-section relative">
                             <div className="absolute -inset-0.5 bg-gradient-to-br from-red-600/20 to-transparent blur opacity-20" />
-                            <form className="bg-black/80 border border-red-900/30 p-10 md:p-14 relative overflow-hidden backdrop-blur-3xl space-y-10 group/form">
+                            <form onSubmit={handleSubmit} className="bg-black/80 border border-red-900/30 p-10 md:p-14 relative overflow-hidden backdrop-blur-3xl space-y-10 group/form">
 
                                 <div className="flex items-center justify-between mb-4">
                                     <div className="text-[10px] font-orbitron text-red-600 flex items-center gap-2">
-                                        <div className="w-1.5 h-1.5 bg-red-600 rounded-full animate-ping" />
-                                        COMMAND_INPUT_ACTIVE
+                                        <div className={`w-1.5 h-1.5 rounded-full ${status === 'TRANSMITTING' ? 'bg-orange-600 animate-spin' : 'bg-red-600 animate-ping'}`} />
+                                        {status === 'IDLE' ? 'COMMAND_INPUT_ACTIVE' : status}
                                     </div>
                                     <div className="text-[10px] font-orbitron text-gray-600 uppercase tracking-widest">
-                                        Buffer: 0KB / 1024KB
+                                        {status === 'SUCCESS' ? 'TRANS_COMPLETE_1024KB' : 'Buffer: 0KB / 1024KB'}
                                     </div>
                                 </div>
 
@@ -221,6 +262,8 @@ export default function Contact() {
                                         <label className="text-[9px] font-orbitron text-gray-500 uppercase tracking-[0.3em] pl-1 group-focus-within/input:text-red-500 transition-colors">Ident Name</label>
                                         <input
                                             type="text"
+                                            name="name"
+                                            required
                                             placeholder="GUEST_ID"
                                             className="w-full bg-red-950/5 border border-red-900/30 p-5 text-white font-rajdhani focus:bg-red-900/10 focus:border-red-600 focus:outline-none transition-all placeholder:text-gray-800 tracking-widest text-lg"
                                         />
@@ -230,6 +273,8 @@ export default function Contact() {
                                         <label className="text-[9px] font-orbitron text-gray-500 uppercase tracking-[0.3em] pl-1 group-focus-within/input:text-red-500 transition-colors">Freq Address</label>
                                         <input
                                             type="email"
+                                            name="email"
+                                            required
                                             placeholder="UPLINK_SOURCE"
                                             className="w-full bg-red-950/5 border border-red-900/30 p-5 text-white font-rajdhani focus:bg-red-900/10 focus:border-red-600 focus:outline-none transition-all placeholder:text-gray-800 tracking-widest text-lg"
                                         />
@@ -240,11 +285,11 @@ export default function Contact() {
                                 <div className="group/input relative space-y-2">
                                     <label className="text-[9px] font-orbitron text-gray-500 uppercase tracking-[0.3em] pl-1 group-focus-within/input:text-red-500 transition-colors">Protocol Selection</label>
                                     <div className="relative">
-                                        <select className="w-full bg-red-950/5 border border-red-900/30 p-5 text-white font-rajdhani focus:bg-red-900/10 focus:border-red-600 focus:outline-none transition-all appearance-none cursor-pointer tracking-widest text-lg">
-                                            <option>NEW_PROJECT_BUILD</option>
-                                            <option>ARCHITECTURE_AUDIT</option>
-                                            <option>STRATEGIC_COLLAB</option>
-                                            <option>GENERAL_QUERY</option>
+                                        <select name="subject" className="w-full bg-red-950/5 border border-red-900/30 p-5 text-white font-rajdhani focus:bg-red-900/10 focus:border-red-600 focus:outline-none transition-all appearance-none cursor-pointer tracking-widest text-lg">
+                                            <option value="NEW_PROJECT_BUILD">NEW_PROJECT_BUILD</option>
+                                            <option value="ARCHITECTURE_AUDIT">ARCHITECTURE_AUDIT</option>
+                                            <option value="STRATEGIC_COLLAB">STRATEGIC_COLLAB</option>
+                                            <option value="GENERAL_QUERY">GENERAL_QUERY</option>
                                         </select>
                                         <ChevronRight className="absolute right-6 top-1/2 -translate-y-1/2 text-red-900 pointer-events-none rotate-90" size={18} />
                                     </div>
@@ -253,6 +298,8 @@ export default function Contact() {
                                 <div className="group/input relative space-y-2">
                                     <label className="text-[9px] font-orbitron text-gray-500 uppercase tracking-[0.3em] pl-1 group-focus-within/input:text-red-500 transition-colors">Transmission Payload</label>
                                     <textarea
+                                        name="message"
+                                        required
                                         rows={6}
                                         placeholder="ENCODE_MESSAGE_HERE..."
                                         className="w-full bg-red-950/5 border border-red-900/30 p-5 text-white font-rajdhani focus:bg-red-900/10 focus:border-red-600 focus:outline-none transition-all resize-none placeholder:text-gray-800 tracking-widest text-lg"
@@ -261,14 +308,32 @@ export default function Contact() {
                                 </div>
 
                                 <motion.button
-                                    whileHover={{ scale: 1.01 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="w-full group/btn relative flex items-center justify-center gap-6 bg-red-600 py-6 text-black font-orbitron font-black text-sm tracking-[0.6em] overflow-hidden transition-all duration-300"
+                                    type="submit"
+                                    disabled={status === 'TRANSMITTING'}
+                                    whileHover={{ scale: status === 'TRANSMITTING' ? 1 : 1.01 }}
+                                    whileTap={{ scale: status === 'TRANSMITTING' ? 1 : 0.98 }}
+                                    className={`w-full group/btn relative flex items-center justify-center gap-6 py-6 font-orbitron font-black text-sm tracking-[0.6em] overflow-hidden transition-all duration-300 ${status === 'TRANSMITTING' ? 'bg-orange-600/50 cursor-wait' : 'bg-red-600'}`}
                                 >
                                     <div className="absolute inset-0 bg-white translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500 opacity-20" />
-                                    <Send size={20} className="relative z-10 group-hover/btn:rotate-12 transition-transform" />
-                                    <span className="relative z-10">INITIALIZE TRANSMISSION</span>
+                                    <Send size={20} className={`relative z-10 transition-transform ${status === 'TRANSMITTING' ? 'animate-pulse' : 'group-hover/btn:rotate-12'}`} />
+                                    <span className="relative z-10">
+                                        {status === 'IDLE' && 'INITIALIZE TRANSMISSION'}
+                                        {status === 'TRANSMITTING' && 'UPLINKING...'}
+                                        {status === 'SUCCESS' && 'UPLINK_SUCCESS!'}
+                                        {status === 'ERROR' && 'UPLINK_FAILED'}
+                                    </span>
                                 </motion.button>
+
+                                {/* Notification HUD Overlay */}
+                                {status !== 'IDLE' && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className={`absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 border ${status === 'SUCCESS' ? 'border-green-600 bg-green-600/10 text-green-500' : 'border-red-600 bg-red-600/10 text-red-500'} font-orbitron text-[8px] z-50 tracking-widest`}
+                                    >
+                                        {status === 'TRANSMITTING' ? 'ENCRYPTING_DATA_PACKETS...' : result || (status === 'SUCCESS' ? 'MESSAGE_SENT_TO_CORE' : 'STREAM_INTERRUPTED')}
+                                    </motion.div>
+                                )}
 
                                 {/* Bottom Form Decoration */}
                                 <div className="flex justify-between items-center pt-8 border-t border-red-900/10 opacity-20">

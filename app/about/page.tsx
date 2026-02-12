@@ -34,9 +34,9 @@ if (typeof window !== "undefined") {
 }
 
 const personalDetails = [
-    { icon: <Calendar size={14} />, label: "10.04.1998" },
-    { icon: <Mail size={14} />, label: "AMIR@CORE.SYS" },
-    { icon: <MapPin size={14} />, label: "SHINJUKU_NODE" },
+    { icon: <Calendar size={14} />, label: "13.12.2003" },
+    { icon: <Mail size={14} />, label: "muhammedamirt@gmail.com" },
+    { icon: <MapPin size={14} />, label: "kochi" },
     { icon: <Briefcase size={14} />, label: "FULL_STACK_ARCH" },
 ];
 
