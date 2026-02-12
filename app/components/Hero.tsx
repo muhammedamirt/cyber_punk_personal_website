@@ -85,10 +85,10 @@ export default function Hero() {
                 <CyberParticles />
             </div>
 
-            <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-20 lg:pt-0">
+            <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center pt-32 lg:pt-0">
 
                 {/* Left: Content Area (Spans 7 cols) */}
-                <div ref={textRef} className="col-span-1 lg:col-span-7 flex flex-col items-center lg:items-start space-y-8 z-20">
+                <div ref={textRef} className="col-span-1 lg:col-span-7 flex flex-col items-center lg:items-start space-y-8 z-20 order-2 lg:order-1">
 
                     <div className="hero-reveal flex items-center gap-2 opacity-60">
                         <Terminal size={14} className="text-red-700" />
@@ -97,10 +97,10 @@ export default function Hero() {
 
                     <div className="hero-reveal space-y-2">
                         <div className="relative group">
-                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-orbitron font-black text-white uppercase tracking-tight leading-none group-hover:text-red-600 transition-colors duration-500">
+                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-orbitron font-black text-white uppercase tracking-tight leading-none group-hover:text-red-600 transition-colors duration-500 text-center lg:text-left">
                                 <GlitchText text="Amir" trigger="always" />
                             </h1>
-                            <div className="absolute -bottom-2 left-0 w-24 h-1 bg-red-600 shadow-[0_0_15px_red] group-hover:w-full transition-all duration-700" />
+                            <div className="absolute -bottom-2 left-1/2 lg:left-0 -translate-x-1/2 lg:translate-x-0 w-24 h-1 bg-red-600 shadow-[0_0_15px_red] group-hover:w-full transition-all duration-700" />
                         </div>
                     </div>
 
@@ -113,24 +113,24 @@ export default function Hero() {
                         </h2>
                     </div>
 
-                    <p className="hero-reveal max-w-lg text-gray-400 text-sm md:text-md leading-relaxed text-center lg:text-left font-rajdhani tracking-wide bg-gradient-to-r from-white/10 to-transparent p-4 border-l border-red-900/30 backdrop-blur-sm">
+                    <p className="hero-reveal max-w-lg text-gray-400 text-sm md:text-md leading-relaxed text-center lg:text-left font-rajdhani tracking-wide bg-gradient-to-r from-red-900/10 to-transparent p-6 border-l-2 lg:border-l border-red-900/40 backdrop-blur-sm">
                         Forging mission-critical infrastructures for the digital age.
-                        Merging <span className="text-red-500 font-bold">anime aesthetics</span> with
-                        <span className="text-white font-bold ml-1">production-grade architecture</span>.
+                        Merging <span className="text-red-500 font-bold font-orbitron">anime aesthetics</span> with
+                        <span className="text-white font-bold ml-1 font-orbitron">production-grade architecture</span>.
                     </p>
 
-                    <div className="hero-reveal flex flex-col sm:flex-row gap-4 w-full justify-center lg:justify-start pt-4">
-                        <button className="group relative px-10 py-4 bg-red-600 text-white font-orbitron font-bold text-xs tracking-[0.3em] overflow-hidden clip-path-slant hover:scale-105 transition-transform duration-300">
+                    <div className="hero-reveal flex flex-col sm:flex-row gap-4 w-full justify-center lg:justify-start pt-4 px-4 sm:px-0">
+                        <button className="group relative px-10 py-5 bg-red-600 text-white font-orbitron font-bold text-xs tracking-[0.3em] overflow-hidden clip-path-slant hover:scale-105 transition-transform duration-300">
                             <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
-                            <span className="relative z-10 flex items-center justify-center gap-2">
+                            <span className="relative z-10 flex items-center justify-center gap-2 uppercase">
                                 <Zap size={16} />
                                 VIEW MISSIONS
                             </span>
                         </button>
 
-                        <button className="group relative px-10 py-4 border border-red-900/40 text-red-500/80 font-orbitron font-bold text-xs tracking-[0.3em] overflow-hidden bg-black/20 hover:text-white hover:border-red-600 transition-all duration-300">
-                            <div className="absolute inset-0 bg-red-600 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
-                            <span className="relative z-10 flex items-center justify-center gap-2">
+                        <button className="group relative px-10 py-5 border border-red-900/40 text-red-500/80 font-orbitron font-bold text-xs tracking-[0.3em] overflow-hidden bg-black/20 hover:text-white hover:border-red-600 transition-all duration-300">
+                            <div className="absolute inset-0 bg-red-600/20 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+                            <span className="relative z-10 flex items-center justify-center gap-2 uppercase font-orbitron">
                                 INITIALIZE_UPLINK
                             </span>
                         </button>
@@ -146,18 +146,18 @@ export default function Hero() {
                 </div>
 
                 {/* Right: Character Image (Spans 5 cols) */}
-                <div ref={charRef} className="col-span-1 lg:col-span-5 relative h-[50vh] lg:h-[80vh] flex items-end justify-center lg:justify-end order-first lg:order-last">
-                    <div className="relative w-full h-full max-w-[550px] z-10 flex items-end">
+                <div ref={charRef} className="col-span-1 lg:col-span-5 relative h-[40vh] md:h-[50vh] lg:h-[80vh] flex items-end justify-center lg:justify-end order-1 lg:order-2">
+                    <div className="relative w-full h-full max-w-[400px] lg:max-w-[550px] z-10 flex items-end">
                         <img
                             src="/anime_character.png"
                             alt="Anime Character"
-                            className="w-full h-full object-contain object-bottom drop-shadow-[0_0_40px_rgba(220,38,38,0.4)] brightness-90 contrast-110 grayscale-[0.2] group-hover:grayscale-0 transition-all duration-1000"
+                            className="w-full h-full object-contain object-bottom drop-shadow-[0_0_40px_rgba(220,38,38,0.4)] brightness-90 contrast-110 grayscale-[0.2] transition-all duration-1000"
                         />
                         {/* Shadow Gradient */}
-                        <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-[#0a0202] to-transparent z-20" />
+                        <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-[#0a0202] to-transparent z-20" />
                     </div>
                     {/* Decorative Ring */}
-                    <div className="absolute bottom-[10%] -right-10 w-[400px] h-[400px] border border-red-900/10 rounded-full animate-spin-slow pointer-events-none" />
+                    <div className="absolute bottom-[10%] -right-10 w-[250px] md:w-[400px] h-[250px] md:h-[400px] border border-red-900/10 rounded-full animate-spin-slow pointer-events-none" />
                 </div>
 
             </div>

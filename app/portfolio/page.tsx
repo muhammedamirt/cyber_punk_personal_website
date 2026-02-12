@@ -78,7 +78,7 @@ export default function Portfolio() {
     }, []);
 
     return (
-        <main ref={containerRef} className="relative min-h-screen w-full bg-[#0a0202] pt-32 pb-40 px-4 overflow-hidden">
+        <main ref={containerRef} className="relative min-h-screen w-full bg-[#0a0202] pt-24 lg:pt-32 pb-20 lg:pb-40 px-4 overflow-hidden">
 
             {/* Background System */}
             <div className="absolute inset-0 z-0 pointer-events-none">
