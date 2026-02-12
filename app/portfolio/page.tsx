@@ -38,9 +38,16 @@ const projects = [
     {
         title: "Red Protocol",
         stack: "App Development, Express",
-        image: "https://images.unsplash.com/photo-1592478411213-61535fdd861d?q=80&w=2070&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
         link: "#"
     }
+];
+
+const miniProjects = [
+    { id: "MINJI_01X", title: "Neural_Chat_v1", status: "STABLE", type: "AI_MOD" },
+    { id: "MINJI_02X", title: "Binary_Vault", status: "STABLE", type: "SEC_MOD" },
+    { id: "MINJI_03X", title: "Grid_Runner_JS", status: "STABLE", type: "EX_MOD" },
+    { id: "MINJI_04X", title: "Core_Shield", status: "STABLE", type: "SYS_MOD" },
 ];
 
 export default function Portfolio() {
@@ -131,14 +138,19 @@ export default function Portfolio() {
                     </div>
                 </div>
 
-                {/* Grid System */}
+                {/* Main Grid System */}
                 <section className="reveal-section">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-12 lg:gap-16">
+                    <div className="flex items-center gap-3 mb-10">
+                        <div className="w-1 h-6 bg-red-600 shadow-[0_0_10px_red]" />
+                        <h2 className="text-xl font-orbitron font-black text-white uppercase tracking-[0.4em]">Primary Deployment</h2>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
                         {projects.map((project, index) => (
                             <motion.div
                                 key={index}
                                 className="project-container group"
-                                whileHover={{ y: -10 }}
+                                whileHover={{ y: -10, scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
                             >
                                 <div className="mb-4 flex items-center gap-2 opacity-50 text-red-900">
                                     <span className="text-[9px] font-orbitron tracking-[0.5em]">MISSION_ID: 00{index + 1}</span>
@@ -150,6 +162,102 @@ export default function Portfolio() {
                     </div>
                 </section>
 
+                {/* Mini Protocol Artifacts (Minji Sections) */}
+                <section className="reveal-section">
+                    <div className="flex items-center justify-between mb-10">
+                        <div className="flex items-center gap-3">
+                            <div className="w-1 h-6 bg-orange-600 shadow-[0_0_10px_orange]" />
+                            <h2 className="text-xl font-orbitron font-black text-white uppercase tracking-[0.4em]">Mini Protocol Artifacts</h2>
+                        </div>
+                        <div className="text-[8px] font-orbitron text-gray-500 uppercase tracking-widest bg-red-950/20 px-3 py-1 border border-red-900/20 translate-y-1">
+                            LOG: MINJI_SUBSYSTEM_v4
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {miniProjects.map((mini, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ delay: idx * 0.1 }}
+                                whileHover={{ scale: 1.05, borderColor: "rgba(220,38,38,0.5)" }}
+                                className="bg-black/40 border border-red-900/20 p-5 relative group overflow-hidden cursor-crosshair"
+                            >
+                                {/* Animated Scanline */}
+                                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-600/5 to-transparent -translate-y-full group-hover:translate-y-full transition-transform duration-1000 ease-linear" />
+
+                                <div className="flex justify-between items-start mb-4">
+                                    <span className="text-[10px] font-orbitron text-red-600">{mini.id}</span>
+                                    <div className="flex gap-1">
+                                        <div className="w-1 h-1 bg-red-600 animate-pulse" />
+                                        <div className="w-1 h-1 bg-red-950" />
+                                    </div>
+                                </div>
+
+                                <h4 className="text-md font-orbitron font-bold text-white mb-2 group-hover:text-red-500 transition-colors uppercase">
+                                    {mini.title}
+                                </h4>
+
+                                <div className="flex items-center gap-2 mt-4 pt-4 border-t border-red-900/10">
+                                    <span className="text-[8px] font-orbitron text-gray-500 uppercase tracking-tighter">TYPE: {mini.type}</span>
+                                    <div className="h-2 w-[1px] bg-red-900/40" />
+                                    <span className="text-[8px] font-orbitron text-green-600 uppercase tracking-tighter">{mini.status}</span>
+                                </div>
+
+                                {/* Industrial Accents */}
+                                <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-red-950/40" />
+                                <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-red-950/40" />
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* Neural matrix / Technical Nodes Section */}
+                <section className="reveal-section">
+                    <div className="flex items-center gap-3 mb-10">
+                        <div className="w-1 h-6 bg-red-900" />
+                        <h2 className="text-xl font-orbitron font-black text-white uppercase tracking-[0.4em]">Neural Matrix</h2>
+                    </div>
+
+                    <div className="bg-black/40 border border-red-900/10 p-10 relative overflow-hidden backdrop-blur-md">
+                        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />
+
+                        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 relative z-10">
+                            {["REACT", "NODE", "GSAP", "AWS", "DOCR", "MONG"].map((tech, i) => (
+                                <motion.div
+                                    key={i}
+                                    whileHover={{ scale: 1.1 }}
+                                    className="flex flex-col items-center gap-3"
+                                >
+                                    <div className="w-16 h-16 border border-red-900/40 flex items-center justify-center relative group/tech overflow-hidden">
+                                        <div className="absolute inset-0 bg-red-600 opacity-0 group-hover/tech:opacity-10 group-hover/tech:scale-150 transition-all duration-500" />
+                                        <span className="text-xs font-orbitron font-black text-red-950 group-hover:text-red-500 transition-colors">
+                                            {tech}
+                                        </span>
+                                        {/* Corner Deco */}
+                                        <div className="absolute top-0 left-0 w-1 h-1 bg-red-900" />
+                                        <div className="absolute bottom-0 right-0 w-1 h-1 bg-red-900" />
+                                    </div>
+                                    <div className="w-full h-1 bg-red-950/30 overflow-hidden">
+                                        <motion.div
+                                            initial={{ width: 0 }}
+                                            whileInView={{ width: "80%" }}
+                                            transition={{ duration: 1, delay: i * 0.1 }}
+                                            className="h-full bg-red-600 opacity-60"
+                                        />
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+
+                        {/* Background Data Decoration */}
+                        <div className="absolute bottom-4 right-4 text-[7px] font-mono text-red-950/40 leading-none pointer-events-none">
+                            {Array(5).fill("0110111010101110101110101110101011101011101").join("\n")}
+                        </div>
+                    </div>
+                </section>
+
                 {/* Bottom Interactive Zone */}
                 <div className="flex justify-center pt-8 reveal-section">
                     <div className="bg-black/80 border border-red-900/30 p-8 text-center max-w-2xl relative overflow-hidden group">
@@ -157,7 +265,7 @@ export default function Portfolio() {
                         <Cpu className="text-red-700 mx-auto mb-4 animate-spin-slow" size={32} />
                         <h4 className="text-sm font-orbitron font-bold text-white uppercase tracking-widest mb-4">Initialize Custom Protocol?</h4>
                         <p className="text-xs font-rajdhani text-gray-400 mb-6 uppercase tracking-wide">
-                            The system is ready to adapt to your specific requirements. Deploy a custom mission payload today.
+                            Ready to collaborate on high-scale engineering projects. Initiate a custom technical proposal and deploy your next mission.
                         </p>
                         <CyberButton variant="primary" className="!tracking-[0.6em] w-full">
                             DEPLOY_PROPOSAL

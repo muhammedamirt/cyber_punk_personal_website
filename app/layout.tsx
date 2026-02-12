@@ -8,8 +8,8 @@ const orbitron = Orbitron({ subsets: ["latin"], weight: ["400", "700", "900"], v
 const rajdhani = Rajdhani({ subsets: ["latin"], weight: ["300", "500", "700"], variable: "--font-rajdhani" });
 
 export const metadata: Metadata = {
-  title: "Amir | Anime & Tech",
-  description: "Personal Portfolio Website",
+  title: "Amir | Full Stack Engineer",
+  description: "Senior Full Stack Engineer specializing in Scalable MERN Architectures and High-Performance Web Systems.",
 };
 
 export default function RootLayout({

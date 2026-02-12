@@ -107,17 +107,17 @@ export default function Hero() {
 
                     <div className="hero-reveal space-y-1 text-center lg:text-left">
                         <h2 className="text-lg md:text-xl font-orbitron font-bold text-red-500 uppercase tracking-[0.3em]">
-                            <ScrambleText text="Full Stack Architect" delay={500} />
+                            <ScrambleText text="Full Stack Engineer" delay={500} />
                         </h2>
                         <h2 className="text-sm md:text-md font-orbitron font-medium text-orange-400/80 tracking-[0.4em]">
-                            <ScrambleText text="MERN Stack Specialist" delay={1200} />
+                            <ScrambleText text="Systems Architect" delay={1200} />
                         </h2>
                     </div>
 
                     <p className="hero-reveal max-w-lg text-gray-400 text-sm md:text-md leading-relaxed text-center lg:text-left font-rajdhani tracking-wide bg-gradient-to-r from-red-900/10 to-transparent p-6 border-l-2 lg:border-l border-red-900/40 backdrop-blur-sm">
-                        Forging mission-critical infrastructures for the digital age.
-                        Merging <span className="text-red-500 font-bold font-orbitron">anime aesthetics</span> with
-                        <span className="text-white font-bold ml-1 font-orbitron">production-grade architecture</span>.
+                        Engineered for scale. Optimized for performance.
+                        Developing <span className="text-red-500 font-bold font-orbitron">production-grade MERN solutions</span> that bridge
+                        <span className="text-white font-bold ml-1 font-orbitron">complex system logic</span> with high-fidelity digital experiences.
                     </p>
 
                     <div className="hero-reveal flex flex-col sm:flex-row gap-6 w-full justify-center lg:justify-start pt-6 px-4 sm:px-0">

@@ -70,146 +70,232 @@ export default function Contact() {
                 <div className="absolute inset-0 bg-gradient-to-b from-black via-red-950/20 to-black" />
                 <CyberParticles />
                 <NeuralLinkEffect />
+
+                {/* Unique Contact HUD Overlays */}
+                <div className="absolute top-1/4 left-10 w-[1px] h-1/2 bg-gradient-to-b from-transparent via-red-900/30 to-transparent" />
+                <div className="absolute top-1/4 right-10 w-[1px] h-1/2 bg-gradient-to-b from-transparent via-red-900/30 to-transparent" />
             </div>
 
-            <motion.div style={{ scale }} className="relative z-10 max-w-6xl mx-auto space-y-24">
+            <motion.div style={{ scale }} className="relative z-10 max-w-7xl mx-auto space-y-24">
 
                 {/* Header Section */}
-                <div className="text-center">
-                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
-                        <h1 className="text-3xl md:text-5xl font-orbitron font-black text-white uppercase tracking-[0.2em] relative inline-block group cursor-default">
-                            <GlitchText text="Uplink Center" trigger="hover" />
-                            <div className="absolute -bottom-1 left-0 w-full h-[1px] bg-red-600/30" />
+                <div className="flex flex-col items-center text-center">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1 }}
+                        className="relative group"
+                    >
+                        <div className="absolute -inset-4 bg-red-600/5 blur-xl group-hover:bg-red-600/10 transition-all duration-700" />
+                        <h1 className="text-4xl md:text-6xl font-orbitron font-black text-white uppercase tracking-[0.3em] relative">
+                            <GlitchText text="Uplink Center" trigger="always" />
                         </h1>
                     </motion.div>
-                    <p className="mt-3 text-[10px] font-orbitron text-orange-600 uppercase tracking-[0.6em] font-bold opacity-70">
-                        <ScrambleText text="ESTABLISHING_COMM :: PROTOCOL_8" delay={500} />
-                    </p>
+                    <div className="mt-6 flex items-center gap-6">
+                        <div className="h-[1px] w-12 bg-red-900/40" />
+                        <p className="text-[10px] font-orbitron text-orange-600 uppercase tracking-[0.6em] font-bold">
+                            <ScrambleText text="ESTABLISHING_COMM :: PROTOCOL_8" delay={500} />
+                        </p>
+                        <div className="h-[1px] w-12 bg-red-900/40" />
+                    </div>
                 </div>
 
                 {/* Main Content Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
 
-                    {/* Left: Connection Info */}
-                    <div className="lg:col-span-5 space-y-12">
+                    {/* Left: Terminal Hub & Social Uplink */}
+                    <div className="lg:col-span-5 space-y-10">
 
-                        <section className="reveal-section">
-                            <div className="bg-black/40 border border-red-900/30 p-8 relative group overflow-hidden backdrop-blur-xl">
-                                <div className="absolute inset-x-0 h-[1px] bg-red-600/40 top-0 animate-scan-slow pointer-events-none" />
+                        {/* Connection Status Module */}
+                        <section className="reveal-section relative">
+                            <div className="bg-black/60 border border-red-900/40 p-10 relative overflow-hidden group backdrop-blur-2xl">
+                                {/* Industrial Grid Background */}
+                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(220,38,38,0.05)_1px,transparent_1px)] bg-[size:20px_20px] opacity-30" />
 
-                                <h3 className="text-sm font-orbitron font-bold text-white mb-8 tracking-[0.2em] uppercase flex items-center gap-3">
-                                    <Radio className="text-red-600 animate-pulse" size={18} />
-                                    Live Uplink
-                                </h3>
-
-                                <div className="space-y-8">
-                                    <a href="mailto:amir@core.sys" className="group block">
-                                        <div className="flex items-center gap-4 p-4 border border-red-900/10 bg-red-950/5 group-hover:bg-red-900/20 transition-all border-l-2 border-l-red-800 group-hover:border-l-red-500">
-                                            <Mail className="text-red-700 group-hover:text-red-500 transition-colors" size={20} />
-                                            <div>
-                                                <span className="block text-[10px] text-gray-600 font-orbitron uppercase tracking-tighter">Secure Mail</span>
-                                                <span className="text-white font-rajdhani text-lg group-hover:text-red-500 transition-colors uppercase">AMIR@CORE.SYS</span>
-                                            </div>
+                                <div className="relative z-10">
+                                    <div className="flex items-center justify-between mb-10">
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-2 h-6 bg-red-600 shadow-[0_0_15px_red] animate-pulse" />
+                                            <h3 className="text-sm font-orbitron font-black text-white tracking-widest uppercase">Live Uplink</h3>
                                         </div>
-                                    </a>
-
-                                    <div className="pt-6">
-                                        <h4 className="text-[10px] font-orbitron text-gray-500 mb-4 tracking-widest uppercase opacity-50">Remote Nodes</h4>
-                                        <div className="grid grid-cols-4 gap-4">
-                                            {[
-                                                { icon: <Github size={20} />, label: "GH" },
-                                                { icon: <Linkedin size={20} />, label: "IN" },
-                                                { icon: <Twitter size={20} />, label: "TW" },
-                                                { icon: <Instagram size={20} />, label: "IG" }
-                                            ].map((social, i) => (
-                                                <button key={i} className="aspect-square flex items-center justify-center border border-red-900/20 text-red-900 hover:text-white hover:bg-red-900/40 hover:border-red-600 transition-all scale-100 hover:scale-105">
-                                                    {social.icon}
-                                                </button>
+                                        <div className="flex gap-1 items-end h-4">
+                                            {[0.4, 0.7, 1, 0.6, 0.9].map((h, i) => (
+                                                <motion.div
+                                                    key={i}
+                                                    animate={{ height: [`${h * 100}%`, `${(1 - h) * 100}%`, `${h * 100}%`] }}
+                                                    transition={{ repeat: Infinity, duration: 1, delay: i * 0.1 }}
+                                                    className="w-1 bg-red-600/60"
+                                                />
                                             ))}
                                         </div>
                                     </div>
+
+                                    <div className="space-y-8">
+                                        <motion.a
+                                            href="mailto:contact@amir.dev"
+                                            whileHover={{ x: 10 }}
+                                            className="group block relative"
+                                        >
+                                            <div className="p-6 bg-red-950/10 border border-red-900/20 group-hover:border-red-600/50 transition-all">
+                                                <div className="flex items-center gap-5">
+                                                    <div className="p-3 bg-red-900/20 text-red-600 group-hover:bg-red-600 group-hover:text-black transition-all">
+                                                        <Mail size={24} />
+                                                    </div>
+                                                    <div>
+                                                        <span className="block text-[8px] font-orbitron text-gray-600 uppercase tracking-[0.2em] mb-1">Direct Terminal</span>
+                                                        <span className="text-white font-rajdhani text-xl tracking-wider group-hover:text-red-500 transition-colors">AAMIRR.DEV@CORE.SYS</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="absolute top-0 right-0 w-8 h-8 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <ChevronRight className="text-red-600" />
+                                            </div>
+                                        </motion.a>
+
+                                        <div className="pt-6">
+                                            <div className="flex items-center gap-3 mb-6">
+                                                <div className="h-[1px] flex-1 bg-red-900/20" />
+                                                <span className="text-[10px] font-orbitron text-gray-500 tracking-widest uppercase">Peripheral Nodes</span>
+                                                <div className="h-[1px] flex-1 bg-red-900/20" />
+                                            </div>
+
+                                            <div className="grid grid-cols-2 gap-4">
+                                                {[
+                                                    { icon: <Github size={20} />, label: "GitHub", tag: "CORE_REPOS", color: "hover:text-white" },
+                                                    { icon: <Linkedin size={20} />, label: "LinkedIn", tag: "NEURAL_LINK", color: "hover:text-blue-500" },
+                                                    { icon: <Twitter size={20} />, label: "X_Corp", tag: "SIGNAL_NODE", color: "hover:text-gray-400" },
+                                                    { icon: <Instagram size={20} />, label: "Insta", tag: "@_.AAMIRR__", color: "hover:text-pink-500" }
+                                                ].map((social, i) => (
+                                                    <motion.button
+                                                        key={i}
+                                                        whileHover={{ y: -5, backgroundColor: "rgba(127, 29, 29, 0.2)" }}
+                                                        className="flex flex-col p-4 border border-red-900/20 bg-black/40 text-left group/node"
+                                                    >
+                                                        <div className={`text-red-900 ${social.color} transition-colors mb-3`}>
+                                                            {social.icon}
+                                                        </div>
+                                                        <span className="text-[10px] font-orbitron text-white group-hover/node:text-red-500 transition-colors">{social.label}</span>
+                                                        <span className="text-[7px] font-orbitron text-gray-600 tracking-tighter">{social.tag}</span>
+                                                    </motion.button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
+                                {/* Industrial Decorations */}
+                                <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-red-600 z-20" />
+                                <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-red-600 z-20" />
                             </div>
                         </section>
 
+                        {/* Quote Module */}
                         <section className="reveal-section">
-                            <div className="bg-red-950/5 border-l border-red-600/30 p-6">
-                                <p className="text-gray-500 font-rajdhani text-sm italic leading-relaxed">
-                                    "Latency is the enemy of progress. I respond to all mission queries within a 24-hour cycle."
+                            <div className="p-8 border-l-2 border-red-600 bg-gradient-to-r from-red-600/5 to-transparent backdrop-blur-sm">
+                                <Terminal size={14} className="text-red-600 mb-4" />
+                                <p className="text-gray-400 font-rajdhani text-lg italic leading-relaxed tracking-wide">
+                                    "Efficiency and precision are the cornerstones of high-performance systems. I respond to all technical queries within a <span className="text-white font-bold font-orbitron">24-hour cycle</span>."
                                 </p>
                             </div>
                         </section>
                     </div>
 
-                    {/* Right: Data Transmission Form */}
+                    {/* Right: Transmission Command Center */}
                     <div className="lg:col-span-7">
-                        <section className="reveal-section">
-                            <form className="bg-black/40 border border-red-900/30 p-8 md:p-10 relative overflow-hidden backdrop-blur-xl space-y-8">
-                                <div className="absolute top-0 right-0 w-[40px] h-[40px] border-t border-r border-red-600/30" />
-                                <div className="absolute bottom-0 left-0 w-[40px] h-[40px] border-b border-l border-red-600/30" />
+                        <section className="reveal-section relative">
+                            <div className="absolute -inset-0.5 bg-gradient-to-br from-red-600/20 to-transparent blur opacity-20" />
+                            <form className="bg-black/80 border border-red-900/30 p-10 md:p-14 relative overflow-hidden backdrop-blur-3xl space-y-10 group/form">
 
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    <div className="space-y-1">
-                                        <label className="text-[9px] font-orbitron text-gray-500 uppercase tracking-widest">Ident Name</label>
-                                        <input
-                                            type="text"
-                                            placeholder="USER_ID"
-                                            className="w-full bg-black/60 border border-red-900/20 p-4 text-white font-rajdhani focus:border-red-600 focus:outline-none transition-all placeholder:text-gray-800"
-                                        />
+                                <div className="flex items-center justify-between mb-4">
+                                    <div className="text-[10px] font-orbitron text-red-600 flex items-center gap-2">
+                                        <div className="w-1.5 h-1.5 bg-red-600 rounded-full animate-ping" />
+                                        COMMAND_INPUT_ACTIVE
                                     </div>
-                                    <div className="space-y-1">
-                                        <label className="text-[9px] font-orbitron text-gray-500 uppercase tracking-widest">Freq Address</label>
-                                        <input
-                                            type="email"
-                                            placeholder="EMAIL_HOST"
-                                            className="w-full bg-black/60 border border-red-900/20 p-4 text-white font-rajdhani focus:border-red-600 focus:outline-none transition-all placeholder:text-gray-800"
-                                        />
+                                    <div className="text-[10px] font-orbitron text-gray-600 uppercase tracking-widest">
+                                        Buffer: 0KB / 1024KB
                                     </div>
                                 </div>
 
-                                <div className="space-y-1">
-                                    <label className="text-[9px] font-orbitron text-gray-500 uppercase tracking-widest">Protocol Type</label>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                                    <div className="group/input relative space-y-2">
+                                        <label className="text-[9px] font-orbitron text-gray-500 uppercase tracking-[0.3em] pl-1 group-focus-within/input:text-red-500 transition-colors">Ident Name</label>
+                                        <input
+                                            type="text"
+                                            placeholder="GUEST_ID"
+                                            className="w-full bg-red-950/5 border border-red-900/30 p-5 text-white font-rajdhani focus:bg-red-900/10 focus:border-red-600 focus:outline-none transition-all placeholder:text-gray-800 tracking-widest text-lg"
+                                        />
+                                        <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-red-600 group-focus-within/input:w-full transition-all duration-500" />
+                                    </div>
+                                    <div className="group/input relative space-y-2">
+                                        <label className="text-[9px] font-orbitron text-gray-500 uppercase tracking-[0.3em] pl-1 group-focus-within/input:text-red-500 transition-colors">Freq Address</label>
+                                        <input
+                                            type="email"
+                                            placeholder="UPLINK_SOURCE"
+                                            className="w-full bg-red-950/5 border border-red-900/30 p-5 text-white font-rajdhani focus:bg-red-900/10 focus:border-red-600 focus:outline-none transition-all placeholder:text-gray-800 tracking-widest text-lg"
+                                        />
+                                        <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-red-600 group-focus-within/input:w-full transition-all duration-500" />
+                                    </div>
+                                </div>
+
+                                <div className="group/input relative space-y-2">
+                                    <label className="text-[9px] font-orbitron text-gray-500 uppercase tracking-[0.3em] pl-1 group-focus-within/input:text-red-500 transition-colors">Protocol Selection</label>
                                     <div className="relative">
-                                        <select className="w-full bg-black/60 border border-red-900/20 p-4 text-white font-rajdhani focus:border-red-600 focus:outline-none transition-all appearance-none cursor-pointer">
+                                        <select className="w-full bg-red-950/5 border border-red-900/30 p-5 text-white font-rajdhani focus:bg-red-900/10 focus:border-red-600 focus:outline-none transition-all appearance-none cursor-pointer tracking-widest text-lg">
                                             <option>NEW_PROJECT_BUILD</option>
                                             <option>ARCHITECTURE_AUDIT</option>
                                             <option>STRATEGIC_COLLAB</option>
                                             <option>GENERAL_QUERY</option>
                                         </select>
-                                        <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 text-red-900 pointer-events-none rotate-90" size={14} />
+                                        <ChevronRight className="absolute right-6 top-1/2 -translate-y-1/2 text-red-900 pointer-events-none rotate-90" size={18} />
                                     </div>
                                 </div>
 
-                                <div className="space-y-1">
-                                    <label className="text-[9px] font-orbitron text-gray-500 uppercase tracking-widest">Transmission Payload</label>
+                                <div className="group/input relative space-y-2">
+                                    <label className="text-[9px] font-orbitron text-gray-500 uppercase tracking-[0.3em] pl-1 group-focus-within/input:text-red-500 transition-colors">Transmission Payload</label>
                                     <textarea
-                                        rows={5}
+                                        rows={6}
                                         placeholder="ENCODE_MESSAGE_HERE..."
-                                        className="w-full bg-black/60 border border-red-900/20 p-4 text-white font-rajdhani focus:border-red-600 focus:outline-none transition-all resize-none placeholder:text-gray-800"
+                                        className="w-full bg-red-950/5 border border-red-900/30 p-5 text-white font-rajdhani focus:bg-red-900/10 focus:border-red-600 focus:outline-none transition-all resize-none placeholder:text-gray-800 tracking-widest text-lg"
                                     ></textarea>
+                                    <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-red-600 group-focus-within/input:w-full transition-all duration-500" />
                                 </div>
 
-                                <button className="w-full group relative flex items-center justify-center gap-4 bg-transparent border border-red-600/50 py-5 text-red-500 font-orbitron font-bold text-xs tracking-[0.4em] overflow-hidden hover:text-white transition-all duration-500">
-                                    <div className="absolute inset-0 bg-red-600 -translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-out" />
-                                    <Send size={18} className="relative z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                <motion.button
+                                    whileHover={{ scale: 1.01 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className="w-full group/btn relative flex items-center justify-center gap-6 bg-red-600 py-6 text-black font-orbitron font-black text-sm tracking-[0.6em] overflow-hidden transition-all duration-300"
+                                >
+                                    <div className="absolute inset-0 bg-white translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500 opacity-20" />
+                                    <Send size={20} className="relative z-10 group-hover/btn:rotate-12 transition-transform" />
                                     <span className="relative z-10">INITIALIZE TRANSMISSION</span>
-                                </button>
+                                </motion.button>
+
+                                {/* Bottom Form Decoration */}
+                                <div className="flex justify-between items-center pt-8 border-t border-red-900/10 opacity-20">
+                                    <div className="text-[8px] font-mono whitespace-nowrap overflow-hidden w-full text-red-900">
+                                        {Array(50).fill("A-X-Z ").join("")}
+                                    </div>
+                                </div>
                             </form>
                         </section>
                     </div>
                 </div>
 
-                {/* Final Interactive Footer */}
-                <div className="flex justify-center pt-8 reveal-section">
-                    <div className="flex items-center gap-8 opacity-40">
-                        <div className="flex items-center gap-2">
-                            <div className="w-1.5 h-1.5 bg-red-600 rounded-full animate-ping" />
-                            <span className="text-[9px] font-orbitron text-gray-500 tracking-widest">SIGNAL_READY</span>
+                {/* Status Bar Footer */}
+                <div className="flex justify-center pt-12 reveal-section">
+                    <div className="bg-black/60 border border-red-900/20 px-10 py-4 flex items-center gap-12 opacity-60 hover:opacity-100 transition-opacity backdrop-blur-xl">
+                        <div className="flex items-center gap-3">
+                            <div className="w-2 h-2 bg-green-600 rounded-full shadow-[0_0_8px_green]" />
+                            <span className="text-[9px] font-orbitron text-gray-500 tracking-[0.2em] uppercase">Signal: Optimal</span>
                         </div>
-                        <div className="h-4 w-[1px] bg-red-900/30" />
-                        <div className="flex items-center gap-2">
-                            <div className="w-1.5 h-1.5 bg-orange-600 rounded-full" />
-                            <span className="text-[9px] font-orbitron text-gray-500 tracking-widest">UPLINK_STABLE</span>
+                        <div className="h-6 w-[1px] bg-red-900/40" />
+                        <div className="flex items-center gap-3">
+                            <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse shadow-[0_0_8px_red]" />
+                            <span className="text-[9px] font-orbitron text-gray-500 tracking-[0.2em] uppercase">Link: Secure</span>
+                        </div>
+                        <div className="h-6 w-[1px] bg-red-900/40" />
+                        <div className="flex items-center gap-3 text-[9px] font-orbitron text-gray-500 tracking-[0.2em] uppercase">
+                            Encryption: AES_256
                         </div>
                     </div>
                 </div>

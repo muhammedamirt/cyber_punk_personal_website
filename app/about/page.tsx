@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -19,7 +19,14 @@ import {
     Camera,
     BookOpen,
     Cpu,
-    Zap
+    Zap,
+    Codepen,
+    CpuIcon,
+    Radio,
+    Instagram,
+    Github,
+    Linkedin,
+    Twitter
 } from "lucide-react";
 
 if (typeof window !== "undefined") {
@@ -34,10 +41,24 @@ const personalDetails = [
 ];
 
 const galleryImages = [
-    { url: "https://images.unsplash.com/photo-1578632738980-43e72a5bef18?q=80&w=1000", title: "DATA_NODE_01" },
-    { url: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1000", title: "DATA_NODE_02" },
-    { url: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000", title: "DATA_NODE_03" },
-    { url: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000", title: "DATA_NODE_04" },
+    { url: "https://images.unsplash.com/photo-1555680202-c86f0e12f086?q=80&w=1000", title: "DATA_NODE_01", type: "INFRA" },
+    { url: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1000", title: "DATA_NODE_02", type: "CODE" },
+    { url: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000", title: "DATA_NODE_03", type: "KERNEL" },
+    { url: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000", title: "DATA_NODE_04", type: "NEURAL" },
+];
+
+interface SocialLog {
+    name: string;
+    icon: React.ReactNode;
+    tag: string;
+    color: string;
+}
+
+const socialLogs: SocialLog[] = [
+    { name: "Instagram", icon: <Instagram size={18} />, tag: "@_.AAMIRR__", color: "text-pink-500" },
+    { name: "Github", icon: <Github size={18} />, tag: "CORE_REPOS", color: "text-white" },
+    { name: "Linkedin", icon: <Linkedin size={18} />, tag: "NEURAL_LINK", color: "text-blue-500" },
+    { name: "X_CORP", icon: <Twitter size={18} />, tag: "SIGNAL_NODE", color: "text-gray-400" },
 ];
 
 const blogs = [
@@ -47,20 +68,31 @@ const blogs = [
 ];
 
 const skillSet = [
-    { name: "React/Next.js", level: 95, tag: "FRONTEND" },
-    { name: "Node/Express", level: 90, tag: "BACKEND" },
-    { name: "MongoDB/SQL", level: 85, tag: "DATABASE" },
-    { name: "TypeScript", level: 92, tag: "CORE" },
-    { name: "GSAP/Framer", level: 88, tag: "ANIMATION" },
-    { name: "Docker/AWS", level: 75, tag: "DEVOPS" },
-    { name: "Tailwind/CSS", level: 98, tag: "STYLING" },
-    { name: "Redux/Zustand", level: 90, tag: "STATE" },
+    { name: "React/Next.js", tag: "FRONTEND" },
+    { name: "Node/Express", tag: "BACKEND" },
+    { name: "MongoDB/SQL", tag: "DATABASE" },
+    { name: "TypeScript", tag: "CORE" },
+    { name: "GSAP/Framer", tag: "ANIMATION" },
+    { name: "Docker/AWS", tag: "DEVOPS" },
+    { name: "Tailwind/CSS", tag: "STYLING" },
+    { name: "Redux/Zustand", tag: "STATE" },
 ];
 
 const experience = [
-    { title: "Lead Architect", company: "NEO_TECH", period: "2022 - PRESENT", desc: "Spearheading high-frequency MERN stack protocols and system architecture." },
-    { title: "Full Stack Warden", company: "CORE_DEV", period: "2020 - 2022", desc: "Managed end-to-end integration of scalable web environments." },
-    { title: "Interface Scout", company: "PIXEL_LOGIC", period: "2018 - 2020", desc: "Derived advanced UI solutions with focus on performance and aesthetics." },
+    {
+        title: "Lead Architect",
+        company: "NEO_TECH",
+        period: "2022 - PRESENT",
+        desc: "Spearheading high-frequency MERN stack protocols and system architecture.",
+        projects: ["Neural Interface v2", "Red Core Shield", "Quantum Ledger"]
+    },
+    {
+        title: "Full Stack Warden",
+        company: "CORE_DEV",
+        period: "2020 - 2022",
+        desc: "Managed end-to-end integration of scalable web environments.",
+        projects: ["Data Streamer X", "Cyber Sentinel", "Ghost Protocol"]
+    }
 ];
 
 const techArsenal = ["VS CODE", "GITHUB", "POSTMAN", "FIGMA", "LINUX", "VERCEL", "DOCKER", "MONGO_DB", "JEST"];
@@ -166,7 +198,7 @@ export default function About() {
                                             <GlitchText text="Amir" trigger="hover" />
                                         </h3>
                                         <p className="text-gray-400 font-rajdhani text-md leading-relaxed">
-                                            Building mission-critical <span className="text-red-500 font-bold">MERN stack</span> infrastructures. Merging detailed <span className="text-orange-400">anime aesthetics</span> with production-grade architecture.
+                                            Full Stack Engineer specializing in <span className="text-red-500 font-bold">Scalable MERN Architectures</span> and high-performance system design. Expertly bridging complex back-end logic with <span className="text-orange-400">precision-engineered</span> digital experiences.
                                         </p>
                                         <div className="grid grid-cols-2 gap-4">
                                             {personalDetails.map((detail, idx) => (
@@ -191,60 +223,24 @@ export default function About() {
                                 <span className="text-[10px] font-rajdhani text-gray-500 tracking-widest uppercase">SYSTM_OPTIMIZED: TRUE</span>
                             </div>
 
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                                 {skillSet.map((skill, idx) => (
                                     <motion.div
                                         key={idx}
                                         whileHover={{ y: -3, borderColor: "rgba(220,38,38,0.4)", backgroundColor: "rgba(220,38,38,0.02)" }}
-                                        className="bg-black/40 border border-red-900/20 p-4 relative group transition-colors overflow-hidden"
+                                        className="bg-black/40 border border-red-900/20 p-4 relative group transition-colors overflow-hidden flex flex-col items-center justify-center text-center"
                                     >
                                         {/* Binary Noise Overlay on Hover */}
                                         <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.03] pointer-events-none text-[6px] font-mono text-red-500 break-all leading-none transition-opacity duration-500">
                                             {Array(50).fill("01").join("")}
                                             {Array(50).fill("10").join("")}
-                                            {Array(50).fill("00").join("")}
-                                            {Array(50).fill("11").join("")}
                                         </div>
-                                        <div className="flex justify-between items-center mb-3">
-                                            <span className="text-[9px] font-orbitron text-red-900 tracking-widest px-1.5 border border-red-950 bg-red-950/20">
-                                                {skill.tag}
-                                            </span>
-                                            <span className="text-[10px] font-orbitron text-orange-600 italic">SYNC: {skill.level}%</span>
-                                        </div>
-                                        <h4 className="text-xs font-orbitron font-bold text-gray-300 group-hover:text-red-500 transition-colors uppercase mb-3">
+                                        <span className="text-[7px] font-orbitron text-red-900 tracking-widest px-1 border border-red-950 bg-red-950/20 mb-2">
+                                            {skill.tag}
+                                        </span>
+                                        <h4 className="text-[10px] font-orbitron font-bold text-gray-300 group-hover:text-red-500 transition-colors uppercase">
                                             {skill.name}
                                         </h4>
-                                        <div className="h-[1px] w-full bg-red-950/50 relative overflow-hidden">
-                                            <motion.div
-                                                initial={{ width: 0 }}
-                                                whileInView={{ width: `${skill.level}%` }}
-                                                transition={{ duration: 1.5, ease: "easeOut", delay: idx * 0.05 }}
-                                                className="absolute top-0 left-0 h-full bg-red-600 shadow-[0_0_10px_rgba(220,38,38,0.8)]"
-                                            />
-                                        </div>
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </section>
-
-                        {/* Gallery Section */}
-                        <section className="reveal-section">
-                            <div className="flex items-center gap-2 mb-6">
-                                <Camera size={16} className="text-red-600" />
-                                <h2 className="text-lg font-orbitron font-bold text-white tracking-[0.2em] uppercase">Visual Fragments</h2>
-                            </div>
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                {galleryImages.map((img, idx) => (
-                                    <motion.div
-                                        key={idx}
-                                        whileHover={{ y: -5, scale: 1.02 }}
-                                        className="relative group aspect-[1/1] md:aspect-[3/4] overflow-hidden border border-red-900/20"
-                                    >
-                                        <img src={img.url} className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0" alt={img.title} />
-                                        <div className="absolute inset-0 bg-red-600/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                        <div className="absolute bottom-2 left-2 text-[8px] font-orbitron text-red-500 opacity-0 group-hover:opacity-100 transition-opacity">
-                                            {img.title}
-                                        </div>
                                     </motion.div>
                                 ))}
                             </div>
@@ -256,18 +252,162 @@ export default function About() {
                                 <Briefcase size={16} className="text-red-700" />
                                 <h2 className="text-lg font-orbitron font-bold text-white tracking-[0.2em] uppercase">Mission History</h2>
                             </div>
-                            <div className="space-y-6 relative before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[1px] before:bg-red-900/30">
+                            <div className="space-y-12 relative before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[1px] before:bg-red-900/30">
                                 {experience.map((exp, idx) => (
-                                    <div key={idx} className="relative pl-10 group">
-                                        <div className="absolute left-0 top-[6px] w-[23px] h-[23px] bg-black border border-red-900 group-hover:border-red-600 transition-colors flex items-center justify-center">
+                                    <div key={idx} className="relative pl-12 group">
+                                        <div className="absolute left-0 top-[6px] w-[23px] h-[23px] bg-black border border-red-900 group-hover:border-red-600 transition-colors flex items-center justify-center z-10">
                                             <div className="w-1.5 h-1.5 bg-red-600 animate-pulse" />
                                         </div>
-                                        <div className="flex flex-col md:flex-row md:items-center justify-between mb-1">
-                                            <h4 className="text-sm font-orbitron font-bold text-gray-200 uppercase">{exp.title} // {exp.company}</h4>
-                                            <span className="text-[10px] font-orbitron text-red-800 tracking-widest">{exp.period}</span>
+
+                                        <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                                            <div>
+                                                <h4 className="text-md font-orbitron font-black text-white uppercase tracking-tighter">
+                                                    {exp.title}
+                                                </h4>
+                                                <div className="text-[10px] font-orbitron text-red-600 font-bold uppercase tracking-widest mt-1">
+                                                    {exp.company}
+                                                </div>
+                                            </div>
+                                            <span className="text-[10px] font-orbitron text-gray-500 tracking-widest mt-2 md:mt-0 bg-red-950/10 px-2 py-1 border border-red-900/20">
+                                                {exp.period}
+                                            </span>
                                         </div>
-                                        <p className="text-xs font-rajdhani text-gray-500 max-w-xl">{exp.desc}</p>
+
+                                        <p className="text-xs font-rajdhani text-gray-400 max-w-2xl mb-6 leading-relaxed">
+                                            {exp.desc}
+                                        </p>
+
+                                        {/* Worked Projects Sub-section */}
+                                        <div className="space-y-3">
+                                            <div className="flex items-center gap-2">
+                                                <Codepen size={12} className="text-red-900" />
+                                                <span className="text-[9px] font-orbitron text-gray-600 uppercase tracking-[0.3em]">Deployed_Modules</span>
+                                            </div>
+                                            <div className="flex flex-wrap gap-3">
+                                                {exp.projects.map((project, pIdx) => (
+                                                    <div key={pIdx} className="flex items-center gap-2 bg-black/40 border border-red-900/10 px-3 py-1.5 group/project hover:border-red-600 transition-colors cursor-default">
+                                                        <div className="w-1 h-1 bg-red-900 group-hover/project:bg-red-600" />
+                                                        <span className="text-[10px] font-orbitron text-gray-500 group-hover/project:text-gray-200 transition-colors uppercase tracking-widest">
+                                                            {project}
+                                                        </span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
                                     </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* Social Media Logs [UPLINK_PROTOCOL] */}
+                        <section className="reveal-section">
+                            <div className="flex items-center justify-between mb-8 pb-2 border-b border-red-900/10">
+                                <div className="flex items-center gap-2">
+                                    <Terminal size={16} className="text-red-600 animate-pulse" />
+                                    <h2 className="text-lg font-orbitron font-bold text-white tracking-[0.2em] uppercase">Social Media Logs</h2>
+                                </div>
+                                <div className="text-[8px] font-orbitron text-red-900/40 uppercase tracking-widest">
+                                    ESTABLISHING_LINK... OK
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                {socialLogs.map((log, idx) => (
+                                    <motion.a
+                                        key={idx}
+                                        href="#"
+                                        whileHover={{ x: 10, scale: 1.02 }}
+                                        className="group relative flex items-center justify-between p-4 bg-black/40 border border-red-900/20 overflow-hidden"
+                                    >
+                                        {/* Background Scanline Effect */}
+                                        <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(220,38,38,0.05)_50%,transparent_100%)] -translate-x-full group-hover:animate-scan-horizontal pointer-events-none" />
+
+                                        {/* Binary Noise Hover Background */}
+                                        <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.03] pointer-events-none text-[5px] font-mono text-red-500 break-all leading-none transition-opacity duration-300">
+                                            {Array(100).fill("01").join("")}
+                                        </div>
+
+                                        <div className="flex items-center gap-4 relative z-10">
+                                            <div className={`p-2 bg-red-950/20 border border-red-900/40 ${log.color} group-hover:bg-red-600 group-hover:text-black transition-all duration-300`}>
+                                                {log.icon}
+                                            </div>
+                                            <div>
+                                                <h4 className="text-[12px] font-orbitron font-bold text-white uppercase tracking-widest group-hover:text-red-500 transition-colors">
+                                                    {log.name}
+                                                </h4>
+                                                <span className="text-[8px] font-orbitron text-red-900 uppercase tracking-tighter">
+                                                    {log.tag}
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div className="flex flex-col items-end relative z-10 opacity-40 group-hover:opacity-100 transition-opacity">
+                                            <div className="text-[6px] font-mono text-gray-500">STATE: ONLINE</div>
+                                            <ChevronRight size={14} className="text-red-600" />
+                                        </div>
+
+                                        {/* Decorative Brackets */}
+                                        <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-red-900/40" />
+                                        <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-red-900/40" />
+                                    </motion.a>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* Gallery Section (Visual Fragments) */}
+                        <section className="reveal-section">
+                            <div className="flex items-center justify-between mb-8">
+                                <div className="flex items-center gap-2">
+                                    <Camera size={16} className="text-red-600" />
+                                    <h2 className="text-lg font-orbitron font-bold text-white tracking-[0.2em] uppercase">Visual Fragments</h2>
+                                </div>
+                                <div className="flex items-center gap-2 text-[8px] font-orbitron text-gray-600 uppercase">
+                                    <Radio size={10} className="text-red-950 animate-pulse" />
+                                    Recv: Stream_44.9
+                                </div>
+                            </div>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                {galleryImages.map((img, idx) => (
+                                    <motion.div
+                                        key={idx}
+                                        whileHover={{ y: -5, scale: 1.02 }}
+                                        className="relative group aspect-[3/4] overflow-hidden border border-red-900/20 bg-black/40"
+                                    >
+                                        {/* Scanning Line */}
+                                        <div className="absolute inset-x-0 h-[10px] bg-red-600/10 top-0 opacity-0 group-hover:opacity-100 group-hover:animate-scan-slow z-30 pointer-events-none" />
+
+                                        {/* Corner Brackets */}
+                                        <div className="absolute top-2 left-2 w-2 h-2 border-t border-l border-red-950 group-hover:border-red-600 transition-colors z-30" />
+                                        <div className="absolute bottom-2 right-2 w-2 h-2 border-b border-r border-red-950 group-hover:border-red-600 transition-colors z-30" />
+
+                                        {/* Image Filter Area */}
+                                        <div className="relative w-full h-full">
+                                            <img src={img.url} className="w-full h-full object-cover grayscale brightness-50 contrast-125 transition-all duration-700 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-110" alt={img.title} />
+
+                                            {/* RGB Glitch Overlay (Pseudo) */}
+                                            <div className="absolute inset-0 opacity-0 group-hover:opacity-10 mix-blend-screen bg-gradient-to-tr from-blue-500 via-transparent to-red-500 scale-105 pointer-events-none" />
+                                        </div>
+
+                                        {/* Data Readout Overlay */}
+                                        <div className="absolute inset-0 bg-black/60 translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-20 p-4 flex flex-col justify-end">
+                                            <div className="space-y-1">
+                                                <div className="flex justify-between items-center bg-red-600/10 border-l-2 border-red-600 px-2 py-1">
+                                                    <span className="text-[7px] font-orbitron text-white uppercase tracking-widest">{img.title}</span>
+                                                    <span className="text-[6px] font-mono text-red-500">0x0{idx + 1}</span>
+                                                </div>
+                                                <div className="flex items-center gap-1">
+                                                    <CpuIcon size={8} className="text-red-900" />
+                                                    <span className="text-[6px] font-orbitron text-gray-500 uppercase tracking-tighter">TAGS: {img.type}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Status Glow */}
+                                        <div className="absolute top-2 right-2 flex gap-1 z-30">
+                                            <div className="w-1 h-1 bg-red-600 rounded-full animate-ping" />
+                                            <div className="w-1 h-3 border-l border-red-950/40" />
+                                        </div>
+                                    </motion.div>
                                 ))}
                             </div>
                         </section>
@@ -279,7 +419,7 @@ export default function About() {
                         {/* Blogs */}
                         <section className="reveal-section">
                             <div className="flex items-center gap-2 mb-6 text-red-600">
-                                <BookOpen size={16} />
+                                < BookOpen size={16} />
                                 <h2 className="text-lg font-orbitron font-bold text-white tracking-[0.2em] uppercase">Data Logs</h2>
                             </div>
                             <div className="space-y-4">
