@@ -1,26 +1,135 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-orbitron: var(--font-orbitron);
+  --font-rajdhani: var(--font-rajdhani);
+
+  --animate-pulse-slow: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-border-flow-top: border-flow-top 1s linear infinite;
+  --animate-border-flow-bottom: border-flow-bottom 1s linear infinite;
+  --animate-border-flow-right: border-flow-right 1s linear infinite 0.5s;
+  --animate-border-flow-left: border-flow-left 1s linear infinite 0.5s;
+  --animate-scan-slow: scan 4s linear infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@keyframes scan {
+  from {
+    transform: translateY(-100%);
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  to {
+    transform: translateY(100vh);
   }
 }
 
+@keyframes border-flow-top {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes border-flow-bottom {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes border-flow-right {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes border-flow-left {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+:root {
+  --background: #050510;
+  --foreground: #ededed;
+}
+
 body {
-  background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  font-family: var(--font-rajdhani), sans-serif;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+.heading-font {
+  font-family: var(--font-orbitron), sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.7), 0 0 20px rgba(220, 38, 38, 0.5);
+  }
+
+  /* Parallelogram Shape - Slants to the right */
+  .clip-path-slant {
+    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+  }
+
+  /* Cyber Panel Shape - Top-left and Bottom-right cut */
+  .clip-path-cyber {
+    clip-path: polygon(0% 15px, 15px 0%, 100% 0%, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0% 100%);
+  }
+
+  .border-glow-red {
+    border: 1px solid rgba(220, 38, 38, 0.5);
+    box-shadow: 0 0 15px rgba(220, 38, 38, 0.3), inset 0 0 15px rgba(220, 38, 38, 0.1);
+  }
+
+  .text-glow-red {
+    text-shadow: 0 0 10px rgba(220, 38, 38, 0.8), 0 0 20px rgba(220, 38, 38, 0.4);
+  }
+
+  .bg-cyber-gradient {
+    background: linear-gradient(135deg, rgba(20, 5, 5, 0.95) 0%, rgba(40, 10, 10, 0.9) 100%);
+  }
+
+  /* Text Outline support */
+  .text-stroke {
+    -webkit-text-stroke: 1px rgba(220, 38, 38, 0.5);
+  }
+
+  .mask-image-b-fade {
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  }
+
+  .glow-ring {
+    box-shadow:
+      0 0 20px rgba(220, 38, 38, 0.5),
+      inset 0 0 20px rgba(220, 38, 38, 0.5);
+  }
 }
