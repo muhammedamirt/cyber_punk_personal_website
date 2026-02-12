@@ -8,6 +8,7 @@ import CyberParticles from "../components/CyberParticles";
 import NeuralLinkEffect from "../components/NeuralLinkEffect";
 import ScrambleText from "../components/ScrambleText";
 import GlitchText from "../components/GlitchText";
+import CyberButton from "../components/CyberButton";
 import {
     Calendar,
     MapPin,
@@ -110,7 +111,7 @@ export default function About() {
                 <NeuralLinkEffect />
             </div>
 
-            <motion.div style={{ scale }} className="relative z-10 max-w-6xl mx-auto space-y-24">
+            <motion.div style={{ scale }} className="relative z-10 max-6xl mx-auto space-y-24">
 
                 {/* Header Section */}
                 <div className="text-center">
@@ -341,15 +342,11 @@ export default function About() {
                     </div>
                 </div>
 
-                {/* Footer Button */}
                 <div className="flex justify-center pt-8 reveal-section">
-                    <button className="group relative px-8 py-3 bg-transparent border border-red-500/40 text-red-500 font-orbitron font-bold text-[10px] tracking-[0.5em] overflow-hidden hover:text-white transition-all duration-300">
-                        <div className="absolute inset-0 bg-red-600 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out" />
-                        <span className="relative z-10 flex items-center gap-2">
-                            <Zap size={14} />
-                            INITIALIZE_PROTOCOL_B
-                        </span>
-                    </button>
+                    <CyberButton variant="secondary" className="!tracking-[0.6em] min-w-[280px]">
+                        <Zap size={14} />
+                        INITIALIZE_PROTOCOL_B
+                    </CyberButton>
                 </div>
 
             </motion.div>

@@ -9,6 +9,7 @@ import NeuralLinkEffect from "../components/NeuralLinkEffect";
 import ProjectCard from "../components/ProjectCard";
 import ScrambleText from "../components/ScrambleText";
 import GlitchText from "../components/GlitchText";
+import CyberButton from "../components/CyberButton";
 import { ChevronRight, Terminal, Zap, Briefcase, Cpu } from "lucide-react";
 
 if (typeof window !== "undefined") {
@@ -158,9 +159,9 @@ export default function Portfolio() {
                         <p className="text-xs font-rajdhani text-gray-400 mb-6 uppercase tracking-wide">
                             The system is ready to adapt to your specific requirements. Deploy a custom mission payload today.
                         </p>
-                        <button className="relative px-8 py-3 bg-red-900/20 border border-red-600 text-red-500 font-orbitron font-bold text-[10px] tracking-[0.5em] overflow-hidden hover:text-white hover:bg-red-600 transition-all duration-500">
+                        <CyberButton variant="primary" className="!tracking-[0.6em] w-full">
                             DEPLOY_PROPOSAL
-                        </button>
+                        </CyberButton>
                     </div>
                 </div>
 

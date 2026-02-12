@@ -7,6 +7,7 @@ import LightningEffect from "./LightningEffect";
 import ScrambleText from "./ScrambleText";
 import GlitchText from "./GlitchText";
 import { ChevronRight, Terminal, Zap } from "lucide-react";
+import CyberButton from "./CyberButton";
 
 export default function Hero() {
     const heroRef = useRef<HTMLDivElement>(null);
@@ -119,21 +120,16 @@ export default function Hero() {
                         <span className="text-white font-bold ml-1 font-orbitron">production-grade architecture</span>.
                     </p>
 
-                    <div className="hero-reveal flex flex-col sm:flex-row gap-4 w-full justify-center lg:justify-start pt-4 px-4 sm:px-0">
-                        <button className="group relative px-10 py-5 bg-red-600 text-white font-orbitron font-bold text-xs tracking-[0.3em] overflow-hidden clip-path-slant hover:scale-105 transition-transform duration-300">
-                            <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
-                            <span className="relative z-10 flex items-center justify-center gap-2 uppercase">
-                                <Zap size={16} />
-                                VIEW MISSIONS
-                            </span>
-                        </button>
+                    <div className="hero-reveal flex flex-col sm:flex-row gap-6 w-full justify-center lg:justify-start pt-6 px-4 sm:px-0">
+                        <CyberButton variant="primary" className="min-w-[220px]">
+                            <Zap size={16} />
+                            Initiate_Mission
+                        </CyberButton>
 
-                        <button className="group relative px-10 py-5 border border-red-900/40 text-red-500/80 font-orbitron font-bold text-xs tracking-[0.3em] overflow-hidden bg-black/20 hover:text-white hover:border-red-600 transition-all duration-300">
-                            <div className="absolute inset-0 bg-red-600/20 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
-                            <span className="relative z-10 flex items-center justify-center gap-2 uppercase font-orbitron">
-                                INITIALIZE_UPLINK
-                            </span>
-                        </button>
+                        <CyberButton variant="secondary" className="min-w-[220px]">
+                            <Terminal size={14} />
+                            Neural_Uplink
+                        </CyberButton>
                     </div>
 
                     <div className="hero-reveal pt-8 hidden lg:block">
