@@ -10,7 +10,8 @@ import {
     ArrowRight,
     Search,
     Clock,
-    User
+    User,
+    Terminal
 } from "lucide-react";
 import GlitchText from "../../components/GlitchText";
 
