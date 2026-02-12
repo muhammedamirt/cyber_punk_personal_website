@@ -13,7 +13,8 @@ import {
     ChevronRight,
     Terminal,
     Settings,
-    Layout
+    Layout,
+    Image as ImageIcon
 } from "lucide-react";
 import GlitchText from "../../components/GlitchText";
 
@@ -60,8 +61,8 @@ export default function AboutManagement() {
                                 key={section.id}
                                 onClick={() => setActiveSection(section.id)}
                                 className={`w-full flex justify-between items-center p-4 border transition-all text-[11px] font-orbitron uppercase tracking-widest group ${activeSection === section.id
-                                        ? "bg-red-900/20 border-red-600 text-white"
-                                        : "bg-red-950/5 border-red-900/10 text-gray-500 hover:text-red-500 hover:border-red-600"
+                                    ? "bg-red-900/20 border-red-600 text-white"
+                                    : "bg-red-950/5 border-red-900/10 text-gray-500 hover:text-red-500 hover:border-red-600"
                                     }`}
                             >
                                 <div className="flex items-center gap-3">
